@@ -1,9 +1,6 @@
 CXX := g++
-
 CXXFLAGS := -Wall
-
 TARGET := indecifrabile
-
 SRC := src.cpp
 
 all: $(TARGET)
