@@ -1,0 +1,11 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8001:80"
+    volumes:
+      - ./files:/var/www/html/files
+      - ./index.php:/var/www/html/index.php
+      - .env:/var/www/html/.env
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
