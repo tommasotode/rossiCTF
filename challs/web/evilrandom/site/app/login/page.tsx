@@ -19,9 +19,9 @@ export default function LoginPage() {
       if (response.ok) {
         router.push('/admin')
       } else {
-        router.push('/login?error=invalid')
+        router.push('/login?error=wrong')
       }
-    } catch (error) {
+    } catch {
       router.push('/login?error=connection')
     }
   }
@@ -36,7 +36,7 @@ export default function LoginPage() {
         
         {error && (
           <p className="text-red-500 mb-4">
-            {error === 'invalid' ? 'Invalid password' : 'Connection error'}
+            {error === 'wrong' ? 'Wrong password' : 'Connection error'}
           </p>
         )}
 

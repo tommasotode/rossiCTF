@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Home() {
   const [words, setWords] = useState<string[]>([]);
-  const [randomWord, setRandomWord] = useState<string | null>(null);
+  const [randWord, setRandWord] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -13,17 +13,17 @@ export default function Home() {
       try {
         const response = await fetch('/words.txt');
         const text = await response.text();
-        const wordList = text.split('\n').filter(word => word.trim() !== '');
+        const wordList = text.split('\n').filter(w => w.trim() !== '');
 
         if (wordList.length === 0) {
-          setError('No words found in the file');
+          setError('Empty file');
           return;
         }
 
         setWords(wordList);
-        setRandomWord(wordList[Math.floor(Math.random() * wordList.length)]);
-      } catch (err) {
-        setError('Failed to load words');
+        setRandWord(wordList[Math.floor(Math.random() * wordList.length)]);
+      } catch {
+        setError('Failed to load file');
       }
     };
 
@@ -32,8 +32,8 @@ export default function Home() {
 
   const getRandomWord = () => {
     if (words.length === 0) return;
-    const newWord = words[Math.floor(Math.random() * words.length)];
-    setRandomWord(newWord);
+    const w = words[Math.floor(Math.random() * words.length)];
+    setRandWord(w);
   };
 
   if (error) {
@@ -75,7 +75,7 @@ export default function Home() {
 
         <div className="text-6xl font-medium text-blue-600 transition-all duration-200 
           hover:scale-105 active:scale-95 select-none">
-          {randomWord || 'Loading...'}
+          {randWord || '...'}
         </div>
 
       </div>
