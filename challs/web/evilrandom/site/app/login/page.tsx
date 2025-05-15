@@ -1,8 +1,19 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
 export default function LoginPage() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <Suspense fallback={<div>...</div>}>
+        <LoginForm />
+      </Suspense>
+    </div>
+  )
+}
+
+function LoginForm() {
   const router = useRouter()
   const error = useSearchParams().get('error')
 
