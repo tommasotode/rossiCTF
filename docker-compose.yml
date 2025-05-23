@@ -1,0 +1,26 @@
+services:
+  ctfd:
+    image: ctfd/ctfd:latest
+    ports:
+      - "8001:8000"
+
+  web2:
+    build: ./challs/web/anotheruselessAPI/site
+    ports:
+      - "8002:80"
+    volumes:
+      - ./challs/web/anotheruselessAPI/site/files:/var/www/html/files
+      - ./challs/web/anotheruselessAPI/site/index.php:/var/www/html/index.php
+      - ./challs/web/anotheruselessAPI/site/.env:/var/www/html/.env
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+
+  web3:
+    build: ./challs/web/evilrandom/site
+    ports:
+      - "8003:3000"
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./challs/web/evilrandom/site:/app
+      - /app/node_modules

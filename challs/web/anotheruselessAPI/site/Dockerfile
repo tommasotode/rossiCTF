@@ -1,7 +1,5 @@
 FROM php:apache
 
-COPY index.php /var/www/html/
-
 RUN mkdir /var/www/html/files && \
     chown -R www-data:www-data /var/www/html/files
 
