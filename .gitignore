@@ -1,2 +1,4 @@
-.vscode
+.vscode/
+__pycache__/
 /challs/misc/calc[12]/root/*/
+/challs/misc/virus/flag
