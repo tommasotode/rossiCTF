@@ -3,7 +3,7 @@ from typing import Literal
 from string import ascii_letters, digits
 from datetime import datetime
 from random import randint, random, choice
-from solution import string_editing
+from stred import string_editing
 from os import remove, rename
 from os.path import getsize
 from subprocess import run, DEVNULL
@@ -101,11 +101,11 @@ multigen(32, 50, (20, 20, 10, 4), (0,), (1, -1), (-1, 0, 0, 1) * 2)
 multigen(23, 20, (25, 25, 10, 5), (-1,), (1, -1), (-1, 0, 0, 1) * 2)
 
 for i in range(7, -1, -1):
-  log(f"Copying manual/input{i}.txt to input.txt")
-  copyfile(f"manual/input{i}.txt", "input.txt")
   log(f"Reading manual/output{i}.txt")
   with open(f"manual/output{i}.txt") as f: output = f.read()[:-1]
   encapsulate(hash(output))
+  log(f"Copying manual/input{i}.txt to input.txt")
+  copyfile(f"manual/input{i}.txt", "input.txt")
 
 encapsulate("Stringus")
 log("Deleting last encapsulated input.txt")
