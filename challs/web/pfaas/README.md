@@ -1,0 +1,3 @@
+# Pretty Flag as a Service (`pfaas`)
+
+Alberto ha creato un servizio PFaaS, capace cioè di fornire agli utenti una flag formattata in un modo bello da vedere. Dietro a quelle che vengono mostrate, però, se ne nasconde un'altra...
