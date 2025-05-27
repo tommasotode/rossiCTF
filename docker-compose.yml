@@ -14,13 +14,3 @@ services:
       - ./challs/web/anotheruselessAPI/site/.env:/var/www/html/.env
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
-
-  web3:
-    build: ./challs/web/evilrandom/site
-    ports:
-      - "8003:3000"
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - ./challs/web/evilrandom/site:/app
-      - /app/node_modules
