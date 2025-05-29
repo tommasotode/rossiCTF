@@ -2,7 +2,7 @@ services:
   ctfd:
     image: ctfd/ctfd:latest
     ports:
-      - "80:8000"
+      - "8000:8000"
 
   web2:
     build: ./challs/web/yourAPI/site
@@ -30,7 +30,7 @@ services:
     command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
     environment:
-      - 'FLAG=CHANGEME'
+      - 'FLAG=rossiCTF{asdasd}'
       
       - 'TIMEOUT=120'    
       - 'FORWARD_STDERR=true'
@@ -49,7 +49,7 @@ services:
     command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
     environment:
-      - 'FLAG=CHANGEME'
+      - 'FLAG=rossiCTF{asdasd}'
       
       - 'TIMEOUT=120'    
       - 'LOG_STDERR=true'
@@ -68,7 +68,25 @@ services:
     command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
     environment:
-      - 'FLAG=CHANGEME'
+      - 'FLAG=rossiCTF{asdasd}'
       
       - 'TIMEOUT=120'    
       - 'LOG_STDERR=true'
+
+  # binary3:
+  #   image: cybersecnatlab/challenge-jail:ubuntu-focal@sha256:5a527a362177415e717aa3d8bad646513ebd648da1f72fe012639176e228884f
+  #   restart: unless-stopped
+  #   init: true
+  #   privileged: true
+
+  #   ports:
+  #     - '20010:1337'
+  #   volumes:
+  #     - './challs/binary/pswgenerator/pswgenerator:/home/user/chall:ro'
+
+
+  #   environment:
+  #     - 'FLAG=asdasdasdasdasd'
+      
+  #     - 'TIMEOUT=120'    
+  #     - 'LOG_STDERR=true'
