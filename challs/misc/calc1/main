@@ -1,4 +1,0 @@
-#!/bin/sh
-dir=$(readlink -f "$(dirname "$0")")
-name=$(basename "$dir")
-sudo env -i /usr/sbin/chroot "--userspec=$name" "$dir/root/" "/$name"

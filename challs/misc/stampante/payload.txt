@@ -1,1 +1,1 @@
-a" && cat flag.txt #
+a" && cat flag #

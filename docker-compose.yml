@@ -22,14 +22,53 @@ services:
     init: true
     privileged: true
     ports:
-      - '8010:1337'
+      - '10010:1337'
     volumes:
-      - './challs/misc/stampante/test.py:/home/user/chall.py:ro'
+      - './challs/misc/stampante/src.py:/home/user/chall.py:ro'
+      - './challs/misc/stampante/art.txt:/home/user/art.txt:ro'
 
     command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
     environment:
       - 'FLAG=rossiCTF{f4sTes7_Pr1nT3r_3V3r_cR34T3d}'
+      
+      - 'TIMEOUT=120'    
+      - 'FORWARD_STDERR=true'
+
+
+  misc3:
+    image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:4ca713d2836422b58d457829e28bf1883bb5a2eb5ba122bc8b77a919b41859aa
+    restart: unless-stopped
+    init: true
+    privileged: true
+    ports:
+      - '10020:1337'
+    volumes:
+      - './challs/misc/calc1/src.py:/home/user/chall.py:ro'
+
+    command: ["/usr/local/bin/python3", "/home/user/chall.py"]
+
+    environment:
+      - 'FLAG=rossiCTF{aaaaa}'
+      
+      - 'TIMEOUT=120'    
+      - 'LOG_STDERR=true'
+
+  misc4:
+    image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:4ca713d2836422b58d457829e28bf1883bb5a2eb5ba122bc8b77a919b41859aa
+    restart: unless-stopped
+    init: true
+    privileged: true
+
+    ports:
+      - '10030:1337'
+    volumes:
+      - './challs/misc/calc2/src.py:/home/user/chall.py:ro'
+
+    command: ["/usr/local/bin/python3", "/home/user/chall.py"]
+
+    environment:
+      - 'FLAG=rossiCTF{asdsad}'
       
       - 'TIMEOUT=120'    
       - 'LOG_STDERR=true'

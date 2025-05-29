@@ -1,19 +1,11 @@
-#!/bin/python3
-
-# Emula i limiti di una vera calcolatrice
 import resource
 resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
-resource.setrlimit(resource.RLIMIT_CPU, (3, 3))
+resource.setrlimit(resource.RLIMIT_CPU, (1, 1))
 resource.setrlimit(resource.RLIMIT_FSIZE, (0, 0))
 resource.setrlimit(resource.RLIMIT_NPROC, (1, 1))
-resource.setrlimit(resource.RLIMIT_AS, (64 * 1024 ** 2, 64 * 1024 ** 2))
+resource.setrlimit(resource.RLIMIT_AS, (16 * 1024 ** 2, 16 * 1024 ** 2))
 
-# Diventa una calcolatrice
-from sympy.parsing.sympy_parser import parse_expr
-parse_globals = {}
-exec("from sympy import *", parse_globals)
-
-print("Ciao, sono la PyCalcolatrice 1.0!")
+print("Ciao, sono la PyCalcolatrice 2.0!")
 print('Scrivi qui le tue espressioni da calcolare o usa "exit" per uscire')
 
 while 2 + 2 == 4:
@@ -25,6 +17,13 @@ while 2 + 2 == 4:
   if i == "exit": break
 
   try:
-    print(parse_expr(i, transformations="all", global_dict=parse_globals))
+    if '"' in i or "'" in i:
+      raise SyntaxError("a chi mai possono servire le virgolette in matematica??")
+
+    if "[" in i or "]" in i or "{" in i or "}" in i:
+      raise NotImplementedError("per ora funzionano solo le parentesi tonde")
+
+    print(eval(i, {"__builtins__": {}}, None))
+
   except BaseException as e:
     print(f"{type(e).__name__}{f': {e}' if e.args else ''}")
