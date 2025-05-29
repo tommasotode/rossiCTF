@@ -27,11 +27,11 @@ public:
 
     static void game()
     {
-        cout << "non ci siamo, però se rispondi a queste domande forse ti regalo la flag ;)" << endl;
+        cout << "\nnon ci siamo, ma se rispondi a queste domande forse ti regalo la flag ;)" << endl;
         string ans;
 
-        cout << "come si chiama la città preferita di Pier Luigi Costa?" << endl;
-        cin >> ans;
+        cout << "come si chiama la cittadina preferita di Pier Luigi Costa? ";
+        getline(cin, ans);
         if (Utils::str_tolower(ans) == "pinnacoli pendenti")
             cout << "bravo! prossima domanda" << endl;
         else
@@ -40,28 +40,21 @@ public:
             exit(0);
         }
 
-        cout << "" << endl;
-        cin >> ans;
-        if (Utils::str_tolower(ans) == "si")
-            cout << "quante " << endl;
-        else
+        cout << "quanti kg di massa magra pesa jok3r? ";
+        getline(cin, ans);
+        if (Utils::str_tolower(ans) != "122")
         {
             cout << "no" << endl;
             exit(0);
         }
 
-        cout << "Complimenti! Purtroppo non mi ricordo la flag, devi indovinarla mi sa" << endl;
+        cout << "Complimenti! Purtroppo non mi ricordo la flag, dovrai indovinarla mi sa..." << endl;
     }
 };
 
 int main()
 {
-    string hexb[] = {
-        "72", "6f", "73", "73", "69", "43", "54", "46",
-        "7b", "68", "33", "58", "5f", "31", "73", "5f",
-        "72", "33", "76", "45", "72", "73", "34", "62",
-        "4c", "33", "5f", "3f", "21", "3f", "3f", "21",
-        "21", "7d"};
+    string hexb[] = {"72", "6f", "73", "73", "69", "43", "54", "46", "7b", "57", "34", "69", "54", "5f", "68", "33", "58", "5f", "31", "73", "5f", "72", "33", "76", "45", "72", "73", "34", "62", "4c", "33", "5f", "3f", "21", "3f", "3f", "21", "21", "5f", "36", "66", "65", "63", "66", "31", "7d"};
     string hex;
     for (const auto &b : hexb)
         hex += b;
@@ -71,6 +64,7 @@ int main()
 
     string flag;
     cin >> flag;
+    cin.ignore();
     if (Utils::str_to_hex(flag) == hex)
         cout << "bravo!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
     else

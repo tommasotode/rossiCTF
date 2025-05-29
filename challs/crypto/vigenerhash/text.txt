@@ -1,0 +1,1 @@
+Ho imparato vigenere e le funzioni di hashing, ormai sono invincibile

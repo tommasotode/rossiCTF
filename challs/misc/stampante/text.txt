@@ -1,0 +1,2 @@
+Mi sono stancato del bloatware, quindi ho scritto una stampante VELOCISSIMA.
+Purtroppo è ancora in beta, quindi ho attivato il log degli errori per scoprirli e sistemarli.
