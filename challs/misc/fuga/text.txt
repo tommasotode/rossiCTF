@@ -1,5 +1,8 @@
-Il mio amico è scomparso da un giorno all'altro e non so dove sia andato :(
-Mi ha mandato questa foto e mi ha scritto "fra esattamente 7 ore sarò a pochi km dal mio bell'hotel a 5 stelle, ci vediamo"
-Voglio cercare di capire dove sia andato, ma non so come fare...
+L'amico di Tommaso è scomparso da un giorno all'altro e lui non sa dove sia
+andato :(
+Ha ricevuto questa foto insieme a un messaggio: "Fra esattamente 7 ore sarò a
+pochi km dal mio bell'hotel a 5 stelle, ci vediamo!". Ora vuole cercare di
+capire dove sia andato, ma non sa come fare...
 
-Formato flag: rossiCTF{nome_hotel} (tutto lowercase, underscore se presenti spazi)
+Formato della flag: rossiCTF{nome_hotel} (tutto minuscolo, con underscore al
+posto degli spazi)

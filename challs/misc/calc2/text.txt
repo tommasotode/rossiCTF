@@ -1,4 +1,7 @@
-Alberto si aspettava che il professore provasse a rompergli la calcolatrice, ma non che ci riuscisse effettivamente! 
-Appena ha scoperto che non funzionava più, non si è voluto arrendere e ha reinstallato subito tutto quanto, 
-ma ha sfruttato l'occasione per creare una nuova calcolatrice molto più sicura di quella di prima, a cui può connettersi con `nc <TODO: IP e porta>`.
+Alberto si aspettava che il professore provasse a rompergli la calcolatrice, ma
+non che ci riuscisse effettivamente! Appena ha scoperto che non funzionava più,
+non si è voluto arrendere e ha reinstallato subito tutto quanto, ma ha sfruttato
+l'occasione per creare una nuova calcolatrice molto più sicura di quella di
+prima, a cui può connettersi con `nc <TODO: IP e porta>`.
+
 Aiuta di nuovo il professore, impedendo ad Alberto di imbrogliare!
