@@ -3,8 +3,8 @@
 #include <time.h>
 #include <string.h>
 
-char token[32];
-char psw[64];
+char token[33];
+char psw[65];
 char nome[64];
 time_t seed;
 
@@ -36,7 +36,7 @@ int main()
 
     printf("Ciao %s!\n", nome);
     printf("Inserisci il token! (se non ce l'hai puoi comprarlo qua: https://www.fortnite.com/)\n");
-    scanf("%31s", token);
+    scanf("%32s", token);
     if (strcmp(token, "supersafeunguessabletoken") != 0)
     {
         printf("Token non valido! Vai a comprare la licenza!\n");
