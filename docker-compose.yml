@@ -4,6 +4,20 @@ services:
     ports:
       - "8000:8000"
 
+
+  web1:
+    build: ./challs/web/ssl/site
+    ports:
+      - "8001:80"
+    volumes:
+      - ./challs/web/ssl/site/index.php:/var/www/html/index.php
+      - ./challs/web/ssl/site/logout.php:/var/www/html/logout.php
+      - ./challs/web/ssl/site/V5jPCZdP.php:/var/www/html/V5jPCZdP.php
+      - ./challs/web/ssl/site/welcome.php:/var/www/html/welcome.php
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+
+
   web2:
     build: ./challs/web/yourAPI/site
     ports:
@@ -31,13 +45,12 @@ services:
 
     environment:
       - 'FLAG=rossiCTF{asdasd}'
-      
-      - 'TIMEOUT=120'    
+      - 'TIMEOUT=120'
       - 'FORWARD_STDERR=true'
 
 
   misc3:
-    image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:4ca713d2836422b58d457829e28bf1883bb5a2eb5ba122bc8b77a919b41859aa
+    build: ./challs/misc/calc1
     restart: unless-stopped
     init: true
     privileged: true
@@ -50,9 +63,9 @@ services:
 
     environment:
       - 'FLAG=rossiCTF{asdasd}'
-      
-      - 'TIMEOUT=120'    
+      - 'TIMEOUT=120'
       - 'LOG_STDERR=true'
+
 
   misc4:
     image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:4ca713d2836422b58d457829e28bf1883bb5a2eb5ba122bc8b77a919b41859aa
@@ -69,9 +82,9 @@ services:
 
     environment:
       - 'FLAG=rossiCTF{asdasd}'
-      
-      - 'TIMEOUT=120'    
+      - 'TIMEOUT=120'
       - 'LOG_STDERR=true'
+
 
   # binary3:
   #   image: cybersecnatlab/challenge-jail:ubuntu-focal@sha256:5a527a362177415e717aa3d8bad646513ebd648da1f72fe012639176e228884f
@@ -84,9 +97,7 @@ services:
   #   volumes:
   #     - './challs/binary/pswgenerator/pswgenerator:/home/user/chall:ro'
 
-
   #   environment:
   #     - 'FLAG=asdasdasdasdasd'
-      
-  #     - 'TIMEOUT=120'    
+  #     - 'TIMEOUT=120'
   #     - 'LOG_STDERR=true'
