@@ -2,16 +2,18 @@ services:
   ctfd:
     image: ctfd/ctfd:latest
     ports:
-      - "8001:8000"
+      - "80:8000"
+    environment:
+      - "CTFd_NAME=test1"
 
   web2:
-    build: ./challs/web/anotheruselessAPI/site
+    build: ./challs/web/yourAPI/site
     ports:
       - "8002:80"
     volumes:
-      - ./challs/web/anotheruselessAPI/site/files:/var/www/html/files
-      - ./challs/web/anotheruselessAPI/site/index.php:/var/www/html/index.php
-      - ./challs/web/anotheruselessAPI/site/.env:/var/www/html/.env
+      - ./challs/web/yourAPI/site/files:/var/www/html/files
+      - ./challs/web/yourAPI/site/index.php:/var/www/html/index.php
+      - ./challs/web/yourAPI/site/.env:/var/www/html/.env
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
 
