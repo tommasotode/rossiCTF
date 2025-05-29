@@ -14,3 +14,22 @@ services:
       - ./challs/web/anotheruselessAPI/site/.env:/var/www/html/.env
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
+
+
+  misc1:
+    image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:4ca713d2836422b58d457829e28bf1883bb5a2eb5ba122bc8b77a919b41859aa
+    restart: unless-stopped
+    init: true
+    privileged: true
+    ports:
+      - '8010:1337'
+    volumes:
+      - './challs/misc/stampante/test.py:/home/user/chall.py:ro'
+
+    command: ["/usr/bin/python3", "/home/user/chall.py"]
+
+    environment:
+      - 'FLAG=rossiCTF{f4sTes7_Pr1nT3r_3V3r_cR34T3d}'
+      
+      - 'TIMEOUT=120'    
+      - 'LOG_STDERR=true'
