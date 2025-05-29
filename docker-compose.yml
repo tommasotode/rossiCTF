@@ -26,7 +26,7 @@ services:
     volumes:
       - './challs/misc/stampante/test.py:/home/user/chall.py:ro'
 
-    command: ["/usr/bin/python3", "/home/user/chall.py"]
+    command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
     environment:
       - 'FLAG=rossiCTF{f4sTes7_Pr1nT3r_3V3r_cR34T3d}'
