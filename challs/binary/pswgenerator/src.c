@@ -8,6 +8,13 @@ char psw[65];
 char nome[64];
 time_t seed;
 
+void init()
+{
+    setvbuf(stdout, NULL, _IONBF, 0);
+    setvbuf(stdin, NULL, _IONBF, 0);
+    setvbuf(stderr, NULL, _IONBF, 0);
+}
+
 void printflag()
 {
     FILE *f = fopen("flag", "r");
@@ -27,6 +34,7 @@ void printflag()
 
 int main()
 {
+    init();
     seed = time(0);
 
     printf("Benvenuto al generatore di password più sicuro di sempre!\n");
