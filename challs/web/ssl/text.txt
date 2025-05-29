@@ -1,0 +1,7 @@
+Alberto ha creato il suo primo sito con un sistema di autenticazione, ma poiché
+vuole che l'esperienza dell'utente sulla piattaforma sia la più semplice
+possibile, nel login non chiede nemmeno la password! Per impedire, però, che
+qualcuno faccia il furbo e acceda al suo account di amministratore, ha pensato a
+diverse protezioni, solo che mentre le implementava era molto distratto: ha
+perso la maggior parte del tempo per creare un sito bello, sacrificando un po'
+troppo l'aspetto della sicurezza...
