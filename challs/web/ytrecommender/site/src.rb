@@ -318,7 +318,7 @@ get '/' do
   username = current_user(request)
   return redirect '/login' unless username
   
-  preferences = request.cookies['preferences'] || Base64.strict_encode64('Security Enthusiasts')
+  preferences = request.cookies['preferences'] || Base64.strict_encode64('nuovo utente')
   render_home(username, preferences)
 end
 
@@ -402,7 +402,7 @@ post '/register' do
     )
     
     response.set_cookie('preferences',
-        value: Base64.strict_encode64('New Users'),
+        value: Base64.strict_encode64('nuovo utente'),
         path: '/'
     )
     

@@ -41,9 +41,9 @@ services:
     ports:
       - "8002:80"
     volumes:
-      - ./challs/web/yourAPI/site/files:/var/www/html/files
+      - ./challs/web/yourAPI/site/files:/var/www/files
       - ./challs/web/yourAPI/site/index.php:/var/www/html/index.php
-      - ./challs/web/yourAPI/site/.env:/var/www/html/.env
+      - ./challs/web/yourAPI/site/.env:/var/www/.env
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
 

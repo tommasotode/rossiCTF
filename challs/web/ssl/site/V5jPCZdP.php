@@ -14,8 +14,6 @@ $len = strlen(trim($user));
 if (!$len) reject('Chi sei??');
 if ($len > 16) reject('Non ho voglia di capire chi sei');
 
-if (rand(0, 1)) reject('La sfera di cristallo mi ha detto che non ti conosco');
-
 session_start();
 session_regenerate_id(true);
 $_SESSION['user'] = $user;
