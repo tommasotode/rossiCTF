@@ -57,9 +57,9 @@ int main()
     psw[64] = 0;
 
     char buf[65];
-    printf("Bene bene %s, ho pensato ad una password adatta a te\n", nome);
+    printf("Bene bene, ho pensato ad una password adatta a te\n", nome);
     printf("Mi fido così tanto della sua sicurezza che se la indovini ti regalo la flag!\n");
-    scanf("%63s", buf);
+    scanf("%64s", buf);
 
     if (!strncmp(buf, psw, 64))
         printflag();
