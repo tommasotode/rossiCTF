@@ -8,7 +8,7 @@ function reject(string $msg) {
 if (!isset($_POST['user'])) reject('Non mi hai detto chi sei');
 
 $user = $_POST['user'];
-if (!is_string($user)) reject('Non capiscp chi sei');
+if (!is_string($user)) reject('Non capisco chi sei');
 
 $len = strlen(trim($user));
 if (!$len) reject('Chi sei??');

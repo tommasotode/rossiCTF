@@ -1,2 +1,3 @@
-Questa API è utilissima, non so come ho fatto a vivere senza finora.
-Purtroppo non ho la versione a pagamento e posso solo leggere le prime 5 righe dei file.
+Questa API è utilissima, non so come ho fatto a vivere senza finora. 
+L'unico difetto è che manca ancora la documentazione, quindi lo sviluppatore mi ha mandato il codice.
+Purtroppo, come se non bastasse, non ho la versione a pagamento e posso solo leggere le prime 5 righe dei file.
