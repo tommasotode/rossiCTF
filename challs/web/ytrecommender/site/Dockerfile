@@ -6,10 +6,7 @@ RUN gem install sinatra rackup puma jwt base64
 WORKDIR /app
 COPY src.rb .
 
-ENV FLAG="flagflagflag" \
-    JWT_SECRET="sadsadsadsadsadsadsadnsadisadijsadijsadijsasadnsadoisadjsaoiaaaa" \
-    SESSION_SECRET="sadsadsadsadsadsadsadnsadisadbbbbdijsadijsasadnsadoisadjsaoiaaaa" \
-    PORT=4567
+ENV FLAG="flagflagflag"
 
 EXPOSE 4567
 CMD ["ruby", "src.rb"]

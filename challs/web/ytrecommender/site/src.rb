@@ -2,39 +2,27 @@ require 'sinatra'
 require 'securerandom'
 require 'jwt'
 require 'base64'
-require 'pstore'
 
 enable :sessions
-set :session_secret, ENV['SESSION_SECRET'] || SecureRandom.hex(64)
+set :session_secret, SecureRandom.hex(64)
 set :bind, '0.0.0.0'
-set :port, ENV['PORT'] || 4567
+set :port, 4567
 set :public_folder, 'public'
 
-FLAG = ENV['FLAG'] || "CTF{dummy_flag_for_local_testing}"
-JWT_SECRET = ENV['JWT_SECRET'] || SecureRandom.hex(64)
-USER_DB_FILE = "users.pstore"
+FLAG = ENV['FLAG']
+JWT_SECRET = SecureRandom.hex(64)
 
-USER_DB = PStore.new(USER_DB_FILE)
-USER_DB.transaction do
-  unless USER_DB[:users]
-    USER_DB[:users] = {
-      'admin' => {
-        password: 'asdasdasdasd12482394',
-        premium: true
-      }
-    }
-  end
-end
+USERS = {
+  'admin' => {
+    password: 'asdnjiosaddmdskidsksdmakdsasdlodsidj'
+  }
+}
 
 def generate_jwt(username)
-  user = get_user(username)
-  return nil unless user
-  
   payload = {
     sub: username,
     exp: Time.now.to_i + 3600,
-    iat: Time.now.to_i,
-    premium: user[:premium]
+    iat: Time.now.to_i
   }
   JWT.encode(payload, JWT_SECRET, 'HS256')
 end
@@ -54,27 +42,9 @@ def current_user(request)
   
   begin
     decoded = JWT.decode(token, JWT_SECRET, true, { algorithm: 'HS256' })
-    username = decoded[0]['sub']
-    get_user(username) ? username : nil
+    decoded[0]['sub']
   rescue
     nil
-  end
-end
-
-def get_user(username)
-  USER_DB.transaction(true) do
-    USER_DB[:users][username]
-  end
-end
-
-def add_user(username, password)
-  USER_DB.transaction do
-    return false if USER_DB[:users].key?(username)
-    USER_DB[:users][username] = {
-      password: password,
-      premium: false
-    }
-    true
   end
 end
 
@@ -249,18 +219,6 @@ def styles
       color: var(--danger);
     }
     
-    .premium-badge {
-      display: inline-block;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      color: #8a2387;
-      padding: 0.3rem 0.8rem;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      margin-left: 1rem;
-      vertical-align: middle;
-    }
-    
     .nav-links {
       display: flex;
       gap: 1.5rem;
@@ -304,21 +262,11 @@ def styles
       border-top: 1px solid rgba(255,255,255,0.1);
       color: rgba(255,255,255,0.6);
     }
-    
-    .logo-img {
-      height: 40px;
-      margin-right: 10px;
-      vertical-align: middle;
-    }
   </style>
   CSS
 end
 
-# Vulnerable template rendering
 def render_home(username, preferences)
-  user = get_user(username)
-  return redirect '/login' unless user
-  
   begin
     decoded_prefs = Base64.strict_decode64(preferences)
   rescue
@@ -336,7 +284,7 @@ def render_home(username, preferences)
   <body>
       <div class="container">
           <header>
-              <div class="logo">📺 TubeRec</div>
+              <div class="logo">ytRecommender</div>
               <div class="nav-links">
                   <a href="/">Home</a>
                   <form action='/logout' method='POST' style="display:inline">
@@ -347,34 +295,25 @@ def render_home(username, preferences)
           
           <main>
               <div class="card">
-                  <h1>Welcome back, #{username}!</h1>
-                  #{'<span class="premium-badge">PREMIUM</span>' if user[:premium]}
+                  <h1>Ciao #{username}!</h1>
                   
                   <div class="preferences">
-                      <strong>Your preferences:</strong> #{ERB.new(decoded_prefs).result}
+                      <strong>Preferenze:</strong> #{ERB.new(decoded_prefs).result}
                   </div>
                   
-                  <h2>Recommended Videos</h2>
+                  <h2>Video consigliati</h2>
                   <ul class="video-list">
-                      <li><a href="https://youtu.be/dQw4w9WgXcQ">Top Security Tips for Developers</a></li>
-                      <li><a href="https://youtu.be/jNQXAC9IVRw">Web Development Masterclass</a></li>
-                      <li><a href="https://youtu.be/LDU_Txk06tM">Advanced CTF Techniques</a></li>
-                      <li><a href="https://youtu.be/3JluqTojuME">Ruby Programming Secrets</a></li>
-                      <li><a href="https://youtu.be/7Q17ubqLfaM">Modern Web Design Principles</a></li>
+                      <li><a href=""></a></li>
+                      <li><a href=""></a></li>
                   </ul>
               </div>
           </main>
-          
-          <footer class="footer">
-              <p>TubeRec &copy; 2023 | Your personalized video recommendation system</p>
-          </footer>
       </div>
   </body>
   </html>
   HTML
 end
 
-# Home page (requires authentication)
 get '/' do
   username = current_user(request)
   return redirect '/login' unless username
@@ -383,20 +322,19 @@ get '/' do
   render_home(username, preferences)
 end
 
-# Registration page
 get '/register' do
   <<~HTML
   <!DOCTYPE html>
   <html>
   <head>
-      <title>Register | TubeRec</title>
+      <title>Register | ytRecommender</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       #{styles}
   </head>
   <body>
       <div class="container">
           <header>
-              <div class="logo">📺 TubeRec</div>
+              <div class="logo">ytRecommender</div>
               <div class="nav-links">
                   <a href="/login">Login</a>
               </div>
@@ -404,36 +342,31 @@ get '/register' do
           
           <main>
               <div class="card">
-                  <h1>Create Account</h1>
+                  <h1>Crea Account</h1>
                   
                   <form action='/register' method='POST'>
                       <div class="form-group">
                           <label for="username">Username</label>
-                          <input type="text" name="username" required placeholder="Enter your username">
+                          <input type="text" name="username" required placeholder="username">
                       </div>
                       
                       <div class="form-group">
                           <label for="password">Password</label>
-                          <input type="password" name="password" required placeholder="Create a password">
+                          <input type="password" name="password" required placeholder="password">
                       </div>
                       
                       <button type="submit">Register</button>
                   </form>
                   
-                  <p style="margin-top: 1.5rem">Already have an account? <a href="/login">Sign in</a></p>
+                  <p style="margin-top: 1.5rem">Hai già un account? <a href="/login">Login</a></p>
               </div>
           </main>
-          
-          <footer class="footer">
-              <p>TubeRec &copy; 2023 | Your personalized video recommendation system</p>
-          </footer>
       </div>
   </body>
   </html>
   HTML
 end
 
-# Registration handler
 post '/register' do
   username = params[:username]
   password = params[:password]
@@ -449,7 +382,18 @@ post '/register' do
     HTML
   end
   
-  if add_user(username, password)
+  if USERS.key?(username)
+    <<~HTML
+    <div class="container">
+        <div class="card">
+            <div class="alert alert-danger">Username già occupato!</div>
+            <p><a href="/register">Try again</a></p>
+        </div>
+    </div>
+    HTML
+  else
+    USERS[username] = { password: password }
+    
     response.set_cookie('session_token', 
         value: generate_jwt(username),
         httponly: true,
@@ -457,39 +401,28 @@ post '/register' do
         secure: ENV['RACK_ENV'] == 'production'
     )
     
-    # Set default preferences
     response.set_cookie('preferences',
         value: Base64.strict_encode64('New Users'),
         path: '/'
     )
     
     redirect '/'
-  else
-    <<~HTML
-    <div class="container">
-        <div class="card">
-            <div class="alert alert-danger">Username already taken!</div>
-            <p><a href="/register">Try again</a></p>
-        </div>
-    </div>
-    HTML
   end
 end
 
-# Login page
 get '/login' do
   <<~HTML
   <!DOCTYPE html>
   <html>
   <head>
-      <title>Login | TubeRec</title>
+      <title>Login | ytRecommender</title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       #{styles}
   </head>
   <body>
       <div class="container">
           <header>
-              <div class="logo">ytReccomend</div>
+              <div class="logo">ytRecommender</div>
               <div class="nav-links">
                   <a href="/register">Register</a>
               </div>
@@ -497,8 +430,7 @@ get '/login' do
           
           <main>
               <div class="card">
-                  <h1>Welcome to TubeRec</h1>
-                  <p>Your personalized video recommendation system</p>
+                  <h1>Migliori video yt!</h1>
                   
                   <form action='/login' method='POST'>
                       <div class="form-group">
@@ -514,7 +446,7 @@ get '/login' do
                       <button type="submit">Login</button>
                   </form>
                   
-                  <p style="margin-top: 1.5rem">Don't have an account? <a href="/register">Register now</a></p>
+                  <p style="margin-top: 1.5rem">Non hai un account? <a href="/register">Registrati</a></p>
               </div>
           </main>
       </div>
@@ -523,14 +455,11 @@ get '/login' do
   HTML
 end
 
-# Login handler
 post '/login' do
   username = params[:username]
   password = params[:password]
   
-  user = get_user(username)
-  
-  if user && user[:password] == password
+  if USERS.key?(username) && USERS[username][:password] == password
     response.set_cookie('session_token', 
         value: generate_jwt(username),
         httponly: true,
@@ -543,46 +472,20 @@ post '/login' do
     <<~HTML
     <div class="container">
         <div class="card">
-            <div class="alert alert-danger">Invalid credentials!</div>
-            <p><a href="/login">Try again</a></p>
+            <div class="alert alert-danger">Login invalido!</div>
+            <p><a href="/login">riprova</a></p>
         </div>
     </div>
     HTML
   end
 end
 
-# Logout handler
 post '/logout' do
   response.delete_cookie('session_token')
   response.delete_cookie('preferences')
   redirect '/login'
 end
 
-# Flag endpoint (only for premium users)
-get '/flag' do
-  username = current_user(request)
-  return redirect '/login' unless username
-  
-  user = get_user(username)
-  if user && user[:premium]
-    FLAG
-  else
-    status 403
-    <<~HTML
-    <div class="container">
-        <div class="card">
-            <h1>Premium Access Required</h1>
-            <div class="alert alert-danger">
-                <p>You need a premium account to access this feature!</p>
-                <p>Contact support to upgrade your account.</p>
-            </div>
-        </div>
-    </div>
-    HTML
-  end
-end
-
-# Error handling
 not_found do
   <<~HTML
   <div class="container">
