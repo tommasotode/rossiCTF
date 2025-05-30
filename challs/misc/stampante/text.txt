@@ -1,3 +1,2 @@
-Tommaso si è stancato del bloatware, quindi ha scritto una stampante VELOCISSIMA.
-Purtroppo è ancora in beta, quindi ha attivato il log degli errori per scoprirli
-e sistemarli...
+Mi sono stancato del bloatware, quindi ho scritto una stampante VELOCISSIMA.
+Purtroppo è ancora in beta, quindi ho attivato il logging degli errori per scoprirli e sistemarli.
