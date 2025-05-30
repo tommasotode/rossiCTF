@@ -4,7 +4,7 @@ from PIL import Image
 from io import BytesIO
 
 def main():
-    fragments_dir = "challs/misc/confusingload/fragments"
+    fragments_dir = "challs/misc/strangecloud/fragments"
     output_file = "reconstructed.png"
     
     fragments = []
