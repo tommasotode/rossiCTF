@@ -50,16 +50,16 @@ services:
     networks:
       - web_challenges
 
-  web4:
-    build: ./challs/web/ytrecommender/site
-    ports:
-      - "8004:4567"
-    environment:
-      FLAG: "flagflagflag"
-    restart: unless-stopped
+  # web4:
+  #   build: ./challs/web/ytrecommender/site
+  #   ports:
+  #     - "8004:4567"
+  #   environment:
+  #     FLAG: "flagflagflag"
+  #   restart: unless-stopped
 
-    networks:
-      - web_challenges
+  #   networks:
+  #     - web_challenges
 
   misc1:
     image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:4ca713d2836422b58d457829e28bf1883bb5a2eb5ba122bc8b77a919b41859aa
@@ -75,7 +75,7 @@ services:
     command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
     environment:
-      - 'FLAG=rossiCTF{asdasd}'
+      - 'FLAG=rossiCTF{f4sTes7_Pr1nT3r_3V3r_cR34T3d!_be7a68}'
       - 'TIMEOUT=120'
       - 'FORWARD_STDERR=true'
 
@@ -96,7 +96,7 @@ services:
     command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
     environment:
-      - 'FLAG=rossiCTF{asdasd}'
+      - 'FLAG=rossiCTF{5yMpy_1S_0v3rP0w3reD_3v4l_iS_7o0!_f6b8a1}'
       - 'TIMEOUT=120'
       - 'LOG_STDERR=true'
 
@@ -119,7 +119,7 @@ services:
     command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
     environment:
-      - 'FLAG=rossiCTF{asdasd}'
+      - 'FLAG=rossiCTF{dUnD3r5_4r3_7h3_N3w_M47h!1!_de87b2}'
       - 'TIMEOUT=120'
       - 'LOG_STDERR=true'
 
@@ -139,7 +139,7 @@ services:
       - './challs/binary/pswgenerator/pswgenerator:/home/user/chall:ro'
 
     environment:
-      - 'FLAG=asdasdasdasdasd'
+      - 'FLAG=rossiCTF{4pP4r3N7ly_th3_p4Ssw0rD_W45n7_s0_54f3..._a3f9c1}'
       - 'TIMEOUT=120'
       - 'LOG_STDERR=true'
 
