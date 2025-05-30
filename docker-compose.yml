@@ -1,8 +1,23 @@
+
+networks:
+  ctfd_network:
+    driver: bridge
+  web_challenges:
+    driver: bridge
+  misc_challenges:
+    driver: bridge
+  binary_challenges:
+    driver: bridge
+
+
 services:
   ctfd:
     image: ctfd/ctfd:latest
     ports:
       - "8000:8000"
+      
+    networks:
+      - ctfd_network
 
 
   web1:
@@ -17,6 +32,9 @@ services:
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
 
+    networks:
+      - web_challenges
+
 
   web2:
     build: ./challs/web/yourAPI/site
@@ -29,6 +47,20 @@ services:
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
 
+    networks:
+      - web_challenges
+
+  web4:
+    build: ./challs/web/ytrecommender/site
+    ports:
+      - "8004:4567"
+    environment:
+      FLAG: "flagflagflag"
+      SESSION_SECRET: "asdsadsadsadsadsadsadsadsadsadsadsadsadsadsadasdsadsadsadasdasda"
+    restart: unless-stopped
+
+    networks:
+      - web_challenges
 
   misc1:
     image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:4ca713d2836422b58d457829e28bf1883bb5a2eb5ba122bc8b77a919b41859aa
@@ -48,6 +80,9 @@ services:
       - 'TIMEOUT=120'
       - 'FORWARD_STDERR=true'
 
+    networks:
+      - misc_challenges
+
 
   misc3:
     build: ./challs/misc/calc1
@@ -65,6 +100,10 @@ services:
       - 'FLAG=rossiCTF{asdasd}'
       - 'TIMEOUT=120'
       - 'LOG_STDERR=true'
+
+    networks:
+      - misc_challenges
+
 
 
   misc4:
@@ -85,19 +124,25 @@ services:
       - 'TIMEOUT=120'
       - 'LOG_STDERR=true'
 
+    networks:
+      - misc_challenges
+
 
   binary3:
-     image: cybersecnatlab/challenge-jail:ubuntu-focal@sha256:5a527a362177415e717aa3d8bad646513ebd648da1f72fe012639176e228884f
-     restart: unless-stopped
-     init: true
-     privileged: true
+    image: cybersecnatlab/challenge-jail:ubuntu-focal@sha256:5a527a362177415e717aa3d8bad646513ebd648da1f72fe012639176e228884f
+    restart: unless-stopped
+    init: true
+    privileged: true
 
-     ports:
-       - '20010:1337'
-     volumes:
-       - './challs/binary/pswgenerator/pswgenerator:/home/user/chall:ro'
+    ports:
+      - '20010:1337'
+    volumes:
+      - './challs/binary/pswgenerator/pswgenerator:/home/user/chall:ro'
 
-     environment:
-       - 'FLAG=asdasdasdasdasd'
-       - 'TIMEOUT=120'
-       - 'LOG_STDERR=true'
+    environment:
+      - 'FLAG=asdasdasdasdasd'
+      - 'TIMEOUT=120'
+      - 'LOG_STDERR=true'
+
+    networks:
+      - binary_challenges
