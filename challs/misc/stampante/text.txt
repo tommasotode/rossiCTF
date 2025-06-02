@@ -1,4 +1,4 @@
 Mi sono stancato del bloatware, quindi ho scritto una stampante VELOCISSIMA.
 Purtroppo è ancora in beta, quindi ho attivato il logging degli errori per scoprirli e sistemarli.
 
-`nc <IP> 10010`
+`nc localhost 10010`

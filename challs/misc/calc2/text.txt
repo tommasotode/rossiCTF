@@ -2,6 +2,6 @@ Alberto si aspettava che il professore provasse a rompergli la calcolatrice, ma
 non che ci riuscisse effettivamente! Appena ha scoperto che non funzionava più,
 non si è voluto arrendere e ha reinstallato subito tutto quanto, ma ha sfruttato
 l'occasione per creare una nuova calcolatrice molto più sicura di quella di
-prima, a cui può connettersi con `nc <IP PORTA>`.
+prima, a cui può connettersi con `nc localhost 10030`.
 
 Aiuta di nuovo il professore, impedendo ad Alberto di imbrogliare!

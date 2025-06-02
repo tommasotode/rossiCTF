@@ -20,26 +20,26 @@ services:
 
   # web1
   ssl:
-    build: ./challs/web/ssl/site
+    build: ./challs/web/ssl/src
     ports:
       - "8001:80"
     volumes:
-      - ./challs/web/ssl/site/index.php:/var/www/html/index.php
-      - ./challs/web/ssl/site/logout.php:/var/www/html/logout.php
-      - ./challs/web/ssl/site/V5jPCZdP.php:/var/www/html/V5jPCZdP.php
-      - ./challs/web/ssl/site/welcome.php:/var/www/html/welcome.php
+      - ./challs/web/ssl/src/index.php:/var/www/html/index.php
+      - ./challs/web/ssl/src/logout.php:/var/www/html/logout.php
+      - ./challs/web/ssl/src/V5jPCZdP.php:/var/www/html/V5jPCZdP.php
+      - ./challs/web/ssl/src/welcome.php:/var/www/html/welcome.php
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
 
   # web2
   yourapi:
-    build: ./challs/web/yourAPI/site
+    build: ./challs/web/yourAPI/src
     ports:
       - "8002:80"
     volumes:
-      - ./challs/web/yourAPI/site/files:/var/www/files
-      - ./challs/web/yourAPI/site/index.php:/var/www/html/index.php
-      - ./challs/web/yourAPI/site/.env:/var/www/.env
+      - ./challs/web/yourAPI/src/files:/var/www/files
+      - ./challs/web/yourAPI/src/index.php:/var/www/html/index.php
+      - ./challs/web/yourAPI/src/.env:/var/www/.env
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
 
@@ -67,8 +67,8 @@ services:
     ports:
       - '10010:1337'
     volumes:
-      - './challs/misc/stampante/src.py:/home/user/chall.py:ro'
-      - './challs/misc/stampante/art.txt:/home/user/art.txt:ro'
+      - './challs/misc/stampante/src/src.py:/home/user/chall.py:ro'
+      - './challs/misc/stampante/src/art.txt:/home/user/art.txt:ro'
 
     command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
@@ -79,14 +79,14 @@ services:
 
   # misc3
   calc1:
-    build: ./challs/misc/calc1
+    build: ./challs/misc/calc1/src
     restart: unless-stopped
     init: true
     privileged: true
     ports:
       - '10020:1337'
     volumes:
-      - './challs/misc/calc1/src.py:/home/user/chall.py:ro'
+      - './challs/misc/calc1/src/src.py:/home/user/chall.py:ro'
 
     command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
@@ -105,7 +105,7 @@ services:
     ports:
       - '10030:1337'
     volumes:
-      - './challs/misc/calc2/src.py:/home/user/chall.py:ro'
+      - './challs/misc/calc2/src/src.py:/home/user/chall.py:ro'
 
     command: ["/usr/local/bin/python3", "/home/user/chall.py"]
 
@@ -124,7 +124,7 @@ services:
     ports:
       - '20010:1337'
     volumes:
-      - './challs/binary/pswgenerator/pswgenerator:/home/user/chall:ro'
+      - './challs/binary/pswgenerator/attachments/pswgenerator:/home/user/chall:ro'
 
     environment:
       - 'FLAG=rossiCTF{4pP4r3N7ly_th3_p4Ssw0rD_W45n7_s0_54f3..._a3f9c1}'

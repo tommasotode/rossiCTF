@@ -1,6 +1,6 @@
 Alberto non ha voglia di fare lunghi calcoli manualmente durante le verifiche di
 matematica, quindi ha creato una calcolatrice che può usare di nascosto
-connettendosi con `nc <IP PORTA>`, ma nello scorso compito non è stato
+connettendosi con `nc localhost 10020`, ma nello scorso compito non è stato
 abbastanza circospetto e al suo professore è sembrato di vedere che la stesse
 utilizzando.
 
