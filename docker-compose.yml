@@ -1,26 +1,25 @@
-
-networks:
-  ctfd_network:
-    driver: bridge
-  web_challenges:
-    driver: bridge
-  misc_challenges:
-    driver: bridge
-  binary_challenges:
-    driver: bridge
-
-
 services:
+  mysql:
+    image: mariadb:10.6
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: rossictfdb
+      MYSQL_USER: rossictf
+      MYSQL_PASSWORD: rossictf
+    volumes:
+      - mysql_data:/var/lib/mysql
+
   ctfd:
     image: ctfd/ctfd:latest
+    environment:
+      DATABASE_URL: mysql+pymysql://ctfd_user:ctfd_password@mysql/ctfd_db
     ports:
       - "8000:8000"
-      
-    networks:
-      - ctfd_network
+    depends_on:
+      - mysql
 
-
-  web1:
+  # web1
+  ssl:
     build: ./challs/web/ssl/site
     ports:
       - "8001:80"
@@ -32,11 +31,8 @@ services:
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
 
-    networks:
-      - web_challenges
-
-
-  web2:
+  # web2
+  yourapi:
     build: ./challs/web/yourAPI/site
     ports:
       - "8002:80"
@@ -47,21 +43,23 @@ services:
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
 
-    networks:
-      - web_challenges
+  # web3
+  # evilrandom:
+  #   build: ./challs/web/evilrandom/site
+  #   ports:
+  #     - "8003:8000"
 
-  # web4:
+
+  # ytrecommend:
   #   build: ./challs/web/ytrecommender/site
   #   ports:
   #     - "8004:4567"
   #   environment:
-  #     FLAG: "flagflagflag"
+  #     'FLAG=rossiCTF{CHANGEME}'
   #   restart: unless-stopped
 
-  #   networks:
-  #     - web_challenges
-
-  misc1:
+  # misc1
+  stampante:
     image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:4ca713d2836422b58d457829e28bf1883bb5a2eb5ba122bc8b77a919b41859aa
     restart: unless-stopped
     init: true
@@ -79,11 +77,8 @@ services:
       - 'TIMEOUT=120'
       - 'FORWARD_STDERR=true'
 
-    networks:
-      - misc_challenges
-
-
-  misc3:
+  # misc3
+  calc1:
     build: ./challs/misc/calc1
     restart: unless-stopped
     init: true
@@ -100,12 +95,8 @@ services:
       - 'TIMEOUT=120'
       - 'LOG_STDERR=true'
 
-    networks:
-      - misc_challenges
-
-
-
-  misc4:
+  # misc4
+  calc2:
     image: cybersecnatlab/challenge-jail:python-3.12-alpine@sha256:4ca713d2836422b58d457829e28bf1883bb5a2eb5ba122bc8b77a919b41859aa
     restart: unless-stopped
     init: true
@@ -123,11 +114,8 @@ services:
       - 'TIMEOUT=120'
       - 'LOG_STDERR=true'
 
-    networks:
-      - misc_challenges
-
-
-  binary3:
+  # binary2
+  pswgenerator:
     image: cybersecnatlab/challenge-jail:ubuntu-focal@sha256:5a527a362177415e717aa3d8bad646513ebd648da1f72fe012639176e228884f
     restart: unless-stopped
     init: true
@@ -143,5 +131,5 @@ services:
       - 'TIMEOUT=120'
       - 'LOG_STDERR=true'
 
-    networks:
-      - binary_challenges
+volumes:
+  mysql_data:
