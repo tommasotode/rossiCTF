@@ -28,4 +28,4 @@ Aggiornando la pagina compare la pagina dell'amministratore, che rispetto a quel
 
 ![La pagina dell'amministratore](admin.png)
 
-Flag: `rossiCTF{1_l0v3_Cl13n751d3_53cUr17y}`
+Flag: `rossiCTF{1_l0v3_Cl13n751d3_53cUr17y_<3_c041fa}`
