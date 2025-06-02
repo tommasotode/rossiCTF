@@ -1,2 +1,2 @@
 main:
-	g++ -Wall -o attachments/indecifrabile src.cpp
+	g++ -Wall -o indecifrabile src.cpp

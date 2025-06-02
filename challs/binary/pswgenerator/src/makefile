@@ -1,2 +1,2 @@
 main:
-	gcc -Wall -o attachments/pswgenerator src.c
+	gcc -Wall -o pswgenerator src.c
