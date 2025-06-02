@@ -3,16 +3,10 @@
 #include <time.h>
 #include <string.h>
 
+char token[33];
 char psw[65];
 char nome[64];
 time_t seed;
-
-void init()
-{
-    setvbuf(stdout, NULL, _IONBF, 0);
-    setvbuf(stdin, NULL, _IONBF, 0);
-    setvbuf(stderr, NULL, _IONBF, 0);
-}
 
 void printflag()
 {
@@ -33,10 +27,11 @@ void printflag()
 
 int main()
 {
-    init();
     seed = time(0);
 
-    printf("Ciao, come ti chiami?\n");
+    printf("Benvenuto al generatore di password più sicuro di sempre!\n");
+    printf("Come ti chiami?\n");
+
     scanf("%s", nome);
 
     srand(seed);
@@ -44,9 +39,17 @@ int main()
         psw[i] = (char)((rand() % (126 - 47 + 1)) + 47);
     psw[64] = 0;
 
+    printf("Inserisci il token! (se non ce l'hai puoi comprarlo qua: https://www.fortnite.com/)\n");
+    scanf("%32s", token);
+    if (strcmp(token, "supersafeunguessabletoken") != 0)
+    {
+        printf("Token non valido! Vai a comprare la licenza!\n");
+        return 0;
+    }
+
     char buf[65];
     printf("Bene bene %s, ho pensato ad una password adatta a te\n", nome);
-    printf("Se la indovini ti regalo la flag!\n");
+    printf("Mi fido così tanto della sua sicurezza che se la indovini ti regalo la flag!\n");
     scanf("%64s", buf);
 
     if (!strncmp(buf, psw, 64))

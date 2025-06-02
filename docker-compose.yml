@@ -12,7 +12,7 @@ services:
   ctfd:
     image: ctfd/ctfd:latest
     environment:
-      DATABASE_URL: mysql+pymysql://ctfd_user:ctfd_password@mysql/ctfd_db
+      DATABASE_URL: mysql+pymysql://rossictf:rossictf@mysql/rossictfdb
     ports:
       - "8000:8000"
     depends_on:
