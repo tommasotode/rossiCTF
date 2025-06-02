@@ -1,1 +1,1 @@
-rossiCTF{iberostar_selection_playa_de_palma}
+rossiCTF{napoli}

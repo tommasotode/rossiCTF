@@ -1,2 +1,4 @@
 Generare parole casuali non è mai stato così facile!
 Mi hanno detto che l'admin può anche aggiungerne altre, ma non so la password...
+
+http://localhost:8003

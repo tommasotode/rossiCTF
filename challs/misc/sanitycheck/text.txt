@@ -2,4 +2,6 @@ Per avere la flag:
 - Aprite un ticket su discord (uno per squadra)
 - Scrivete nome della squadra e componenti con nome e cognome
 
+Solo le squadre che hanno fatto il sanity check sono considerate valide.
+
 Buona fortuna!

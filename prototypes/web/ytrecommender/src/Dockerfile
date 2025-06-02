@@ -6,7 +6,7 @@ RUN gem install sinatra rackup puma jwt base64
 WORKDIR /app
 COPY src.rb .
 
-ENV FLAG="flagflagflag"
+ENV FLAG="rossiCTF{CHANGEME}"
 
 EXPOSE 4567
 CMD ["ruby", "src.rb"]
