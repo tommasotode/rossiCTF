@@ -1,3 +1,3 @@
 Finalmente non avrò più bisogno di inventare nuove password, che sollievo.
 
-`nc <IP> 20010`
+`nc localhost 20010`
