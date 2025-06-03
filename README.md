@@ -26,5 +26,5 @@ Capture The Flag a squadre per principianti interna all' ITIS A. Rossi (30/05/20
 Per hostare:
 `docker compose up --build`
 
-Per risolvere le challenge senza soluzione:
+Per risolvere le challenge senza soluzione:  
 Scaricare `text.txt` e gli allegati (`attachments/`) se presenti.
