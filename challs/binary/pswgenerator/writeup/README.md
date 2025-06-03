@@ -6,18 +6,18 @@ La generazione delle password e l'implementazione del programma sembrano corrett
 ![vuln](vuln.png)
 
 - Lo `scanf()` di `nome` non ha un limite sui caratteri inseriti (`%s`), permettendo un buffer overflow.
-- Il seed viene assegnato con time(0) prima che questo `scanf()` venga chiamato, quindi overflowando il nome si può sostituirlo (se il layout di memoria lo consente).
+- Il seed viene assegnato con time(0) prima che questo `scanf()` venga chiamato, e `srand(seed)` viene chiamato dopo il nostro `scanf()`, quindi overflowando il nome possiamo sostituirlo prima che venga utilizzato (se il layout di memoria lo consente).
 
 ![layout](layout.png)
 
 Osservando il frame della funzione (con `Edit stack frame` di `ghidra`), capiamo di poterlo fare.
 
-A questo punto l'exploit è chiaro, basterà sovrascrivere il seed ad un valore deciso da noi sfruttando il **buffer overflow**, e prevedere quindi la password generata.
+A questo punto l'exploit è chiaro, basterà sovrascrivere il seed con un valore deciso da noi sfruttando il **buffer overflow**, e prevedere quindi la password generata.
 Per farlo si può o riscrivere il codice con il nostro seed, o per i più pigri debuggare il binario con un debugger (es. `gdb`) e prendere il valore in **runtime**.
 
 Fatto questo basterà reversare il binario per trovare il token **segretissimo** e scrivere la password giusta, e si riceverà la flag.
 
-**Nota:** Normalmente i compilatori, fra le altre ottimizzazioni, riordinano le variabili mettendo i buffer dopo le variabili (es. `int`). Per rendere la challenge exploitabile, le variabili sono state messe in uno struct packed, altrimenti il seed sarebbe stato sopra al nome.
+**Nota:** Normalmente i compilatori, fra le altre ottimizzazioni, riordinano le variabili mettendo i buffer dopo le variabili (es. `int`). Per rendere la challenge exploitabile, le variabili e i buffer in questione sono stati appositamente messi nell'ordine intended in uno struct packed, altrimenti il seed sarebbe stato sopra al nome.
 
 Esempio di exploit:
 ```python
