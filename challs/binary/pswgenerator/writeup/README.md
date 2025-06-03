@@ -10,7 +10,7 @@ La generazione delle password e l'implementazione del programma sembrano corrett
 
 ![layout](layout.png)
 
-Osservando il frame della funzione, capiamo di poterlo fare.
+Osservando il frame della funzione (con `Edit stack frame` di `ghidra`), capiamo di poterlo fare.
 
 A questo punto l'exploit è chiaro, basterà sovrascrivere il seed ad un valore deciso da noi sfruttando il **buffer overflow**, e prevedere quindi la password generata.
 Per farlo si può o riscrivere il codice con il nostro seed, o per i più pigri debuggare il binario con un debugger (es. `gdb`) e prendere il valore in **runtime**.
