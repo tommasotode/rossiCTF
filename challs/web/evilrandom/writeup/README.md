@@ -1,12 +1,5 @@
 # Evil Random (`evilrandom`)
 
-Generare parole casuali non è mai stato così facile!
-Mi hanno detto che l'admin può anche aggiungerne altre, ma non so la password...
-
-http://localhost:8003
-
-#
-
 La challenge espone un sito web che 'genera' parole casuali estraendole da un file di testo, scritta con `next.js`.
 
 Analizzando attentamente il progetto non si trovano problemi evidenti, ed in effetti la vulnerabilità **non** si trova nel codice.
