@@ -1,4 +1,4 @@
-# Evil Random (`evilrandom`)
+# Yet Other (one) Useless Rest API (`yourAPI`)
 
 La challenge espone un sito web che implementa una `API` che legge dei file in una cartella `/files`.
 Non vengono date guide di utilizzo o documentazioni, ma abbiamo il codice, che letto fa capire come fare le richieste, che sono dei json strutturati in questo modo:
