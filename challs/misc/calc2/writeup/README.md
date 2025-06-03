@@ -46,9 +46,8 @@ che, in quanto funzione, abbia l'attributo `__builtins__`. Effettuando la ricerc
 ```
 
 `_frozen_importlib._ModuleLock` è disponibile nell'ambiente della challenge, all'indice 116, quindi
-scrivendo `().__class__.__base__.__subclasses__().__getitem__(116).__init__.__builtins__` ho i
-`builtins`, sempre sotto forma di dizionario. Come faccio, però, a costruire le stringhe `"open"` e
-`"flag"`?
+scrivendo `().__class__.__base__.__subclasses__()[116].__init__.__builtins__` ho i `builtins`,
+sempre sotto forma di dizionario. Come faccio, però, a costruire le stringhe `"open"` e `"flag"`?
 
 **Fun fact #1:** In Python ogni funzione (e quindi ogni metodo e ogni classe) ha un attributo
 `__name__`, il cui valore è una stringa con il nome.
@@ -65,9 +64,9 @@ classe `str` a definire il metodo `__add__(self, other)` per concatenare effetti
 
 Nel mio caso, quindi, `object[key]` si traduce in
 [`object.__getitem__(key)`](https://docs.python.org/3/reference/datamodel.html#object.__getitem__),
-che mi serve anche per accedere a `open` nel dizionario dei `builtins`. Per scrivere `"open"` e
-`"flag"`, creo in locale una funzione Python che mi genera il codice più corto possibile per
-costruire queste stringhe:
+che mi serve anche per accedere all'indice 116 nella lista delle sottoclassi di `object` e a `open`
+nel dizionario dei `builtins`. Per scrivere `"open"` e `"flag"`, creo in locale una funzione Python
+che mi genera il codice più corto possibile per costruire queste stringhe:
 
 ```python
 >>> methods = dir(())
