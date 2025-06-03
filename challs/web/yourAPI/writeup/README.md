@@ -5,9 +5,9 @@ Non vengono date guide di utilizzo o documentazioni, ma abbiamo il codice, che l
 
 ```json
 {
-    'file': 'esempio',
-    'token': 'abcdefg',
-    'lines': 5
+    "file": "esempio",
+    "token": "abcdefg",
+    "lines": 5
 }
 ```
 
@@ -15,8 +15,8 @@ e otteniamo delle risposte di questo tipo:
 
 ```json
 {
-    'text':'contenuto',
-    'length':100
+    "text": "contenuto",
+    "length": 100
 }
 ```
 
