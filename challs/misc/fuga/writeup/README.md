@@ -18,3 +18,5 @@ L'ora in cui è stata scattata la foto invece si ricava dai metadati dell'immagi
 A questo punto sappiamo anche l'ora di arrivo (12:35+05:00=17:35) e dobbiamo solo cercare fra gli aerei in arrivo da `BGY` (su [questo](https://www.milanbergamoairport.it/en/real-time-flights/) sito) quelli intorno a quell'ora.
 
 Il più vicino il giorno della gara era quello in arrivo a Napoli alle 17:40, e quindi la flag era rossiCTF{napoli}
+
+Flag: `rossiCTF{napoli}`

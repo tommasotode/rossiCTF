@@ -4,7 +4,7 @@ La challenge espone un sito web che 'genera' parole casuali estraendole da un fi
 
 Analizzando attentamente il progetto non si trovano problemi evidenti, ed in effetti la vulnerabilità **non** si trova nel codice.
 Il problema è proprio la versione utilizzata di `next.js`, la `15.2.2`.
-```
+```json
 {
   "name": "evilrandom",
   "version": "0.1.0",

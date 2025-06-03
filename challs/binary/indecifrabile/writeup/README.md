@@ -4,7 +4,11 @@ La challenge consiste in un binario, compilato da un file `c++`.
 
 Questo binario ha molte fonti di distrazione inutili, ma sostanzialmente l'unica parte importante è l'array di stringhe contenente la flag codificata in **esadecimale**, e divisa in blocchetti da due caratteri esadecimali (equivalente di un byte).
 
-Essendo scritto in `c++`, l'eseguibile è un po' scomodo da reversare, ma con un po' di pazienza o con qualsiasi tool (es. `strings` con i parametri corretti), si possono tirare fuori i blocchetti in hex e recuperare la flag codificata.
+L'eseguibile è un po' scomodo da reversare, sia perché è scritto in `c++`, ma soprattutto perché il compilatore ottimizza le stringhe ed elimina le doppie, e non ci permette di tirare fuori i blocchi concatenati e pronti in modo automatico, perché per ogni lettera sarà presente una sola stringa, che verrà usata poi da tutte le sue "ripetizioni".
+Tuttavia, è sufficiente con un po' di pazienza disassemblare il binario e prendere i valori dei blocchetti unici (eventualmente anche copiando il contenuto e scriptando velocemente con `python`).
+
+![blocchi](blocchi.png)
+(esempio con `ghidra`)
 
 A questo punto basterà riportarli da `hex` ad `ascii`, e concatenarli in ordine, e avremo ottenuto la flag.
 

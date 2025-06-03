@@ -1,7 +1,7 @@
 # Password Generator (`pswgenerator`)
 
 La challenge espone un servizio remoto (`nc localhost 20010`) ed il binario corrispondente, che presumibilmente 'genera' delle password.
-La generazione delle password e l'implementazione del programma sembrano corrette, ma analizzando bene il decompilato ci si accorge di una parte critica in questa sezione:
+La generazione delle password e l'implementazione del programma sembrano corrette, ma analizzando bene il decompilato (ottenuto con tool come `ghidra` o `binary-ninja`) ci si accorge di una parte critica in questa sezione:
 
 ![vuln](vuln.png)
 
