@@ -27,4 +27,4 @@ Per hostare:
 `docker compose up --build`
 
 Per risolvere le challenge senza soluzione:
-Scaricare gli `attachments/` e `text.txt`.
+Scaricare `text.txt` e gli allegati (`attachments/`) se presenti.
