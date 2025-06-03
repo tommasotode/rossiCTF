@@ -8,6 +8,7 @@ L'eseguibile è un po' scomodo da reversare, sia perché è scritto in `c++`, ma
 Tuttavia, è sufficiente con un po' di pazienza disassemblare il binario e prendere i valori dei blocchetti unici (eventualmente anche copiando il contenuto e scriptando velocemente con `python`).
 
 ![blocchi](blocchi.png)
+
 (esempio con `ghidra`)
 
 A questo punto basterà riportarli da `hex` ad `ascii`, e concatenarli in ordine, e avremo ottenuto la flag.
