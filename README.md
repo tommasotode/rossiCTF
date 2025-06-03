@@ -1,5 +1,5 @@
 # rossiCTF
-Capture The Flag a squadre per principianti interna all' ITIS A. Rossi (30/05/2025)
+Capture The Flag introduttiva a squadre interna all' ITIS A. Rossi (30/05/2025)
 
 |   n | categoria | challenge                                                                                        | autore       | soluzioni |
 | --: | :-------- | :----------------------------------------------------------------------------------------------- | -----------: | --------: |
