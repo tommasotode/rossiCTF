@@ -2,11 +2,14 @@
 
 La challenge espone un servizio remoto (`nc localhost 20010`) ed il binario corrispondente, che presumibilmente 'genera' delle password.
 La generazione delle password e l'implementazione del programma sembrano corrette, ma analizzando bene il decompilato ci si accorge di una parte critica in questa sezione:
+
 ![vuln](vuln.png)
 
 - Lo `scanf()` di `nome` non ha un limite sui caratteri inseriti (`%s`), permettendo un buffer overflow.
 - Il seed viene assegnato con time(0) prima che questo `scanf()` venga chiamato, quindi overflowando il nome si può sostituirlo (se il layout di memoria lo consente).
+
 ![layout](layout.png)
+
 Osservando il frame della funzione, capiamo di poterlo fare.
 
 A questo punto l'exploit è chiaro, basterà sovrascrivere il seed ad un valore deciso da noi sfruttando il **buffer overflow**, e prevedere quindi la password generata.
