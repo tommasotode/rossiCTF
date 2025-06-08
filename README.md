@@ -3,7 +3,7 @@ Capture The Flag introduttiva a squadre interna all' ITIS A. Rossi (30/05/2025)
 
 |   n | categoria | challenge                                                                                        | autore       | soluzioni |
 | --: | :-------- | :----------------------------------------------------------------------------------------------- | -----------: | --------: |
-|   1 | misc      | [sanity check](https://github.com/tommasotode/rossiCTF/tree/main/challs/misc/sanitycheck)        | @tode        |         6 |
+|   1 | misc      | [sanity check](https://github.com/tommasotode/rossiCTF/tree/main/challs/misc/sanitycheck)        | @tode        |         7 |
 |   2 | misc      | [stampante](https://github.com/tommasotode/rossiCTF/tree/main/challs/misc/stampante)             | @tode        |         5 |
 |   3 | misc      | [strangecloud](https://github.com/tommasotode/rossiCTF/tree/main/challs/misc/strangecloud)       | @tode        |         0 |
 |   4 | misc      | [calc1](https://github.com/tommasotode/rossiCTF/tree/main/challs/misc/calc1)                     | @barban      |         4 |
